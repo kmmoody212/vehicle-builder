@@ -41,6 +41,8 @@ class Motorbike extends Vehicle {
     // The constructor should check if the wheels array has 2 elements and create 2 new default Wheel objects if it does not
     if (wheels.length !== 2) {
       this.wheels = [new Wheel(), new Wheel()];
+    } else {
+      this.wheels = wheels;
     }
   }
 
@@ -52,10 +54,21 @@ class Motorbike extends Vehicle {
     );
   }
 
-  // TODO: Override the printDetails method from the Vehicle class
-  // TODO: The method should call the printDetails method of the parent class
-  // TODO: The method should log the details of the Motorbike
-  // TODO: The details should include the VIN, make, model, year, weight, top speed, color, and wheels
+  // Override the printDetails method from the Vehicle class
+  override printDetails(): void {
+    // Call the printDetails method of the parent class, Vehicle
+    super.printDetails();
+
+    // Print details of the Motorbike class
+    console.log(`VIN: ${this.vin}`);
+    console.log(`Color: ${this.color}`);
+    console.log(`Make: ${this.make}`);
+    console.log(`Model: ${this.model}`);
+    console.log(`Year: ${this.year}`);
+    console.log(`Weight: ${this.weight} lbs`);
+    console.log(`Top Speed: ${this.topSpeed} mph`);
+    console.log(`Wheels: ${this.wheels}`);
+  }
 }
 
 // Export the Motorbike class as the default export
