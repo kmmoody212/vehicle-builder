@@ -256,8 +256,8 @@ class Cli {
           parseInt(answers.topSpeed),
           [
             new Wheel(answers.frontWheelDiameter, answers.frontWheelBrand),
-            new Wheel(),
-          ] ////////////////////////////////////////////
+            new Wheel(answers.rearWheelDiameter, answers.rearWheelBrand),
+          ]
         );
         // push the motorbike to the vehicles array
         this.vehicles.push(motorbike);
@@ -289,13 +289,10 @@ class Cli {
         // check if the selected vehicle is the truck
         if (answers.vehicleToTow === truck.vin) {
           console.log("The truck cannot tow itself");
-          this.performActions();
         } else {
           truck.tow(answers.vehicleToTow);
-          this.performActions();
         }
-
-        //  if it is not, tow the selected vehicle then perform actions on the truck to allow the user to select another action
+        this.performActions();
       });
   }
 
@@ -316,9 +313,9 @@ class Cli {
             "Turn right",
             "Turn left",
             "Reverse",
-            "Select or create another vehicle",
             "Tow vehicle",
             "Pop a wheelie",
+            "Select or create another vehicle",
             "Exit",
           ],
         },
@@ -390,6 +387,7 @@ class Cli {
               this.vehicles[i] instanceof Truck
             ) {
               truck = this.vehicles[i] as Truck;
+              truck.tow(this.vehicles[i]);
             }
           }
           if (truck) {
@@ -405,6 +403,7 @@ class Cli {
               this.vehicles[i] instanceof Motorbike
             ) {
               motorbike = this.vehicles[i] as Motorbike;
+              motorbike.wheelie(motorbike);
             }
           }
         }
