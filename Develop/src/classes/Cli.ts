@@ -287,7 +287,7 @@ class Cli {
       ])
       .then((answers) => {
         // check if the selected vehicle is the truck
-        if (answers.vehicleToTow === truck.vin) {
+        if (answers.includes(truck)) {
           console.log("The truck cannot tow itself");
         } else {
           truck.tow(answers.vehicleToTow);
